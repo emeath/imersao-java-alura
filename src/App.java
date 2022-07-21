@@ -16,20 +16,17 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
 
-
+        //read api key from environment variable
         Map<String, String> env = System.getenv();
-
-        //String apiKeyMatheus = "9ae1ce85be5728e80caaf9bd1a14226d";
-
         String apiKeyMatheus = env.get("APIKEYMATHEUS");
 
-        System.out.println(apiKeyMatheus);
-
-        // make HTTP conection and search 250 top movies
+        // make HTTP conection and search 250 top tv shows
         String baseUrl = "https://api.themoviedb.org/3";
-        String url = baseUrl + "/movie/76341?api_key=" + apiKeyMatheus;
-
-
+        String endpoint = "/discover/tv";
+        String requiredParam = "?api_key=" + apiKeyMatheus;
+        String optionalParam = "";
+        endpoint += requiredParam + optionalParam;
+        String url = baseUrl + endpoint;
 
         URI address = URI.create(url);
         var client = HttpClient.newHttpClient();
@@ -37,10 +34,11 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
         //System.out.println(body);
+        
         JSONObject jsonObject = new JSONObject(body);
-        System.out.println(jsonObject.get("original_title"));
-        System.out.println(jsonObject.get("poster_path"));
-        System.out.println(jsonObject.get("vote_average"));
+        System.out.println(jsonObject.getJSONArray("results").getJSONObject(0).get("original_name"));
+        //System.out.println(jsonObject.get("poster_path"));
+        //System.out.println(jsonObject.get("vote_average"));
 
         //titulo, imagem, classificacao
         //System.out.println(jsonObject.get("title"));
