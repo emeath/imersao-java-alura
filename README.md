@@ -20,4 +20,5 @@ Aula 1
 
 ## :books: Referências
 
-*Este README.md foi desenvolvido com o apoio do ótimo artigo: https://www.alura.com.br/artigos/escrever-bom-readme*
+- API Doc: https://developers.themoviedb.org/3/getting-started/introduction
+- *Este README.md foi desenvolvido com o apoio do ótimo artigo: https://www.alura.com.br/artigos/escrever-bom-readme*
