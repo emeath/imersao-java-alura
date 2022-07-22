@@ -7,6 +7,8 @@ Imersão criada pela Alura, onde é proposto o uso de Java para trabalhar com we
 ## :electric_plug: Técnicas e tecnologias utilizadas
 - ``Java 11``
 - ``Java JSON (org.json)``
+- ``JColor``
+- ``Maven``
 - ``Paradigma de orientação a objetos``
 
 ## :dart: Desafios propostos
@@ -21,4 +23,5 @@ Aula 1
 ## :books: Referências
 
 - API Doc: https://developers.themoviedb.org/3/getting-started/introduction
+- JColor lib: https://github.com/dialex/JColor
 - *Este README.md foi desenvolvido com o apoio do ótimo artigo: https://www.alura.com.br/artigos/escrever-bom-readme*
