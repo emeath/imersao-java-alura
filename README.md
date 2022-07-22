@@ -26,15 +26,30 @@ Aula 2
 1. Fazer um pacote no Whatsapp e/ou Telegram com as suas próprias figurinhas! - Status: :construction:
 1. Criar diretório de saída das imagens, se ainda não existir. - Status: :heavy_check_mark:
 1. Colocar outra fonte como a Comic Sans ou a Impact, a fonte usada em memes. - Status: :construction:
-1. Colocar uma imagem de você que está fazendo esse curso sorrindo, fazendo joinha! - Status: :construction:
+1. Colocar uma imagem de você que está fazendo esse curso sorrindo, fazendo joinha! - Status: :heavy_check_mark:
 1. Colocar contorno (outline) no texto da imagem. - Status: :construction:
-1. Fazer com que o texto da figurinha seja personalizado de acordo com as classificações do IMDB. - Status: :construction:
+1. Fazer com que o texto da figurinha seja personalizado de acordo com as classificações do IMDB. - Status: :heavy_check_mark:
 1. Desafio supremo: usar alguma biblioteca de manipulação de imagens como OpenCV pra extrair imagem principal e contorná-la. - Status: :construction:
+
+## :tada: Resultados
+
+Stickers gerados com o projeto:
+
+Poster, legenda contendo avaliação obtida da API e foto pessoal de acordo com nota.
+
+### :thumbsup: Nota boa:
+![Kung Fu Panda: The Dragon Knight](https://user-images.githubusercontent.com/20783431/180519517-e82341ef-6f6f-4ed0-8320-29303fdf7907.png)
+
+### Nota mediana
+![Days of Our Lives](https://user-images.githubusercontent.com/20783431/180519798-c40fb7cc-339d-4324-8457-d79874eac0d6.png)
+
+### :thumbsdown: Nota "pode melhorar mais"
+![Love in 40 Days](https://user-images.githubusercontent.com/20783431/180519654-4718eae2-8c65-4268-8c08-927bcc636e80.png)
 
 ## :books: Referências
 
 - API Doc: https://developers.themoviedb.org/3/getting-started/introduction
-- JColor lib: https://github.com/dialex/JColor
+- JColor lib: https://github.com/dialex/JColor!
 - Decorar o terminal: https://www.alura.com.br/artigos/decorando-terminal-cores-emojis
 - Ansi Escape in Eclipse Console: https://marketplace.eclipse.org/content/ansi-escape-console
 - *Este README.md foi desenvolvido com o apoio do ótimo artigo: https://www.alura.com.br/artigos/escrever-bom-readme*
