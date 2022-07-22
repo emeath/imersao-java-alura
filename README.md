@@ -15,8 +15,8 @@ Imersão criada pela Alura, onde é proposto o uso de Java para trabalhar com we
 
 Aula 1
 1. Armazenar apiKey em arquivo externo ao código fonte ou em variável de ambiente - Status: :heavy_check_mark:
-2. Consumir endpoints que retornam melhores séries e mais populares - Status: :construction:
-3. Personalizar a saída no console - Status: :construction:
+2. Consumir endpoints que retornam melhores séries e mais populares - Status: :heavy_check_mark:
+3. Personalizar a saída no console - Status: :heavy_check_mark:
 4. Utilizar biblioteca externa para realizar Json Parse - Status: :heavy_check_mark:
 5. Criar mecanismo para usuário realizar a classificação dele para um filme - Status: :construction:
 
