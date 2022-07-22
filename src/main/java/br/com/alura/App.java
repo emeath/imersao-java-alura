@@ -1,5 +1,7 @@
 package br.com.alura;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -28,7 +30,7 @@ public class App {
         Map<String, String> env = System.getenv();
         String apiKeyMatheus = env.get("APIKEYMATHEUS");
 
-        // make HTTP conection and search 250 top tv shows
+        // make HTTP conection and search tv shows to discover
         String baseUrl = "https://api.themoviedb.org/3";
         String imgBaseUrl = "https://image.tmdb.org/t/p/w500";
         String endpoint = "/discover/tv";
@@ -51,12 +53,77 @@ public class App {
         JSONObject jsonObject = new JSONObject(body);
         
         Attribute[] myFormat = new Attribute[]{RED_TEXT(), YELLOW_BACK(), BOLD()};
+        Attribute[] tvShowsTitle = new Attribute[]{GREEN_TEXT(), BLUE_BACK(), BOLD()};
+        
+        System.out.println(colorize("                 ", tvShowsTitle));
+        System.out.println(colorize("Discover Tv Shows", tvShowsTitle));
+        System.out.println(colorize("                 ", tvShowsTitle));
+        System.out.println(colorize("\n", tvShowsTitle));
 
         for (int i = 0; i < jsonObject.getJSONArray("results").length(); i++) {
             System.out.println(colorize((String) jsonObject.getJSONArray("results").getJSONObject(i).get("original_name"), myFormat));
-            System.out.println(jsonObject.getJSONArray("results").getJSONObject(i).get("vote_average"));
-            System.out.println(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"));
-            System.out.println("---");
+            
+            String rating = jsonObject.getJSONArray("results").getJSONObject(i).get("vote_average").toString();          
+            
+            if (Math.round(Double.parseDouble(rating)) == 0) {
+            	for (int j = 0; j < 10; j++) {
+                	System.out.print("🍅");
+    			}
+			} else {
+				for (int j = 0; j < Math.round(Double.parseDouble(rating)); j++) {
+	            	System.out.print("⭐");
+				}
+			}
+                       
+            System.out.println("(" + rating + ")");
+            
+            System.out.println(colorize(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"), CYAN_TEXT()));
+            
+            System.out.println("\n\n");
+        }
+        
+        // make HTTP conection and search trending tv shows
+        endpoint = "/trending/tv/week";
+        optionalParam = "";
+        endpoint += requiredParam + optionalParam;
+        url = baseUrl + endpoint;
+        
+        address = URI.create(url);
+        client = HttpClient.newHttpClient();
+        request = HttpRequest.newBuilder(address).GET().build();
+        response = client.send(request, BodyHandlers.ofString());
+        body = response.body();
+
+        if (debug) {
+            System.out.println(body);
+            System.exit(-1);
+        }
+
+        System.out.println(colorize("                 ", tvShowsTitle));
+        System.out.println(colorize("Trending Tv Shows", tvShowsTitle));
+        System.out.println(colorize("                 ", tvShowsTitle));
+        System.out.println(colorize("\n", tvShowsTitle));
+        
+        for (int i = 0; i < jsonObject.getJSONArray("results").length(); i++) {
+            System.out.println(colorize((String) jsonObject.getJSONArray("results").getJSONObject(i).get("original_name"), myFormat));
+            
+            String rating = jsonObject.getJSONArray("results").getJSONObject(i).get("vote_average").toString();          
+            
+            if (Math.round(Double.parseDouble(rating)) == 0) {
+            	for (int j = 0; j < 10; j++) {
+                	System.out.print("🍅");
+    			}
+			} else {
+				for (int j = 0; j < Math.round(Double.parseDouble(rating)); j++) {
+	            	System.out.print("⭐");
+				}
+			}
+                       
+            System.out.println("(" + rating + ")");
+            
+            System.out.println(colorize(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"), CYAN_TEXT()));
+            
+            System.out.println("\n\n");
         }
 
     }
