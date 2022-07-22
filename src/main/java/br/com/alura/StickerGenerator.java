@@ -15,13 +15,15 @@ import javax.imageio.ImageIO;
 
 public class StickerGenerator {
 
-	public void create() throws IOException {
+	public void create(InputStream inputStream, String stickerFileName, String stickerCaptionName) throws IOException {
 		
 		// reads image
 		// get image from disk
-		//InputStream inputStream = new FileInputStream(new File("src/main/resources/input/movie.jpg"));
+		// InputStream inputStream = 
+		//					new FileInputStream(new File("src/main/resources/input/movie.jpg"));
 		// get image from web datastream
-		InputStream inputStream = new URL("https://image.tmdb.org/t/p/w500/bnfTPTTytrZZ9Aw6hoOQdojiaKo.jpg").openStream();
+		// InputStream inputStream = 
+		//					new URL("https://image.tmdb.org/t/p/w500/bnfTPTTytrZZ9Aw6hoOQdojiaKo.jpg").openStream();
 		BufferedImage originalImage = ImageIO.read(inputStream);		
 		
 		// create new image in memory with transparency and new size
@@ -40,23 +42,29 @@ public class StickerGenerator {
 		graphics.setColor(Color.YELLOW);
 		
 		// write phrase on new image
-		String stickerLegend = "CONFIA";
+		String stickerLegend = stickerCaptionName;
 		int stringWidth = graphics.getFontMetrics().stringWidth(stickerLegend);
 		int centeringPosition = Math.round((width - stringWidth)/2);
 		graphics.drawString(stickerLegend, centeringPosition, newHeight - 100);
 		
+		// Challange: put personal picture based on tv show rating
+		if (Double.parseDouble(stickerCaptionName) >= 7) {
+			InputStream inputStreamThumbsUp = new FileInputStream(new File("src/main/resources/input/thumbsUp.png"));
+			BufferedImage thumbsUpImage = ImageIO.read(inputStreamThumbsUp);
+			graphics.drawImage(thumbsUpImage, 250, newHeight - 250, null);
+		} else if (Double.parseDouble(stickerCaptionName) <= 3.5) { 
+			InputStream inputStreamThumbsDown = new FileInputStream(new File("src/main/resources/input/thumbsDown.png"));
+			BufferedImage thumbsUpImage = ImageIO.read(inputStreamThumbsDown);
+			graphics.drawImage(thumbsUpImage, 250, newHeight - 250, null);
+		}
+		
 		// write new image on file
-		File outputImageFile = new File("src/main/resources/output/movie-sticker.png");
+		File outputImageFile = new File("src/main/resources/output/" + stickerFileName);
 		// Create output dir if it doesn't exists
 		String createdStickersFolderPath = outputImageFile.getParent();
 		@SuppressWarnings("unused")
 		boolean mkdir = new File(createdStickersFolderPath).mkdir();
 		ImageIO.write(newImage, "png", outputImageFile);
 		
-	}
-	
-	public static void main(String[] args) throws IOException {
-		var generator = new StickerGenerator();
-		generator.create();
 	}
 }

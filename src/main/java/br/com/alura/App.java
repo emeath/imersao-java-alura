@@ -1,20 +1,25 @@
 package br.com.alura;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+import static com.diogonunes.jcolor.Ansi.colorize;
+import static com.diogonunes.jcolor.Attribute.BLUE_BACK;
+import static com.diogonunes.jcolor.Attribute.BOLD;
+import static com.diogonunes.jcolor.Attribute.CYAN_TEXT;
+import static com.diogonunes.jcolor.Attribute.GREEN_TEXT;
+import static com.diogonunes.jcolor.Attribute.RED_TEXT;
+import static com.diogonunes.jcolor.Attribute.YELLOW_BACK;
+
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-import java.util.Map;
-
-import static com.diogonunes.jcolor.Ansi.colorize;
 import com.diogonunes.jcolor.Attribute;
-import static com.diogonunes.jcolor.Attribute.*;
 
 public class App {
 
@@ -35,7 +40,7 @@ public class App {
         String imgBaseUrl = "https://image.tmdb.org/t/p/w500";
         String endpoint = "/discover/tv";
         String requiredParam = "?api_key=" + apiKeyMatheus;
-        String optionalParam = "";
+        String optionalParam = "&air_date.lte=2000";
         endpoint += requiredParam + optionalParam;
         String url = baseUrl + endpoint;
 
@@ -59,11 +64,19 @@ public class App {
         System.out.println(colorize("Discover Tv Shows", tvShowsTitle));
         System.out.println(colorize("                 ", tvShowsTitle));
         System.out.println(colorize("\n", tvShowsTitle));
-
+        
+        
+        StickerGenerator stickerGenerator = new StickerGenerator();
         for (int i = 0; i < jsonObject.getJSONArray("results").length(); i++) {
-            System.out.println(colorize((String) jsonObject.getJSONArray("results").getJSONObject(i).get("original_name"), myFormat));
             
+        	String tvShowName = (String) jsonObject.getJSONArray("results").getJSONObject(i).get("original_name");
             String rating = jsonObject.getJSONArray("results").getJSONObject(i).get("vote_average").toString();          
+            String urlPosterImage = imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path");
+            
+            InputStream inputStream = new URL(urlPosterImage).openStream();
+            stickerGenerator.create(inputStream, tvShowName + ".png", rating);
+            
+            System.out.println(colorize(tvShowName, myFormat));
             
             if (Math.round(Double.parseDouble(rating)) == 0) {
             	for (int j = 0; j < 10; j++) {
@@ -76,9 +89,7 @@ public class App {
 			}
                        
             System.out.println("(" + rating + ")");
-            
-            System.out.println(colorize(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"), CYAN_TEXT()));
-            
+            System.out.println(colorize(urlPosterImage, CYAN_TEXT()));
             System.out.println("\n\n");
         }
         
@@ -94,6 +105,8 @@ public class App {
         response = client.send(request, BodyHandlers.ofString());
         body = response.body();
 
+        JSONObject jsonObjectTredingTvShows = new JSONObject(body);
+		
         if (debug) {
             System.out.println(body);
             System.exit(-1);
@@ -104,10 +117,16 @@ public class App {
         System.out.println(colorize("                 ", tvShowsTitle));
         System.out.println(colorize("\n", tvShowsTitle));
         
-        for (int i = 0; i < jsonObject.getJSONArray("results").length(); i++) {
-            System.out.println(colorize((String) jsonObject.getJSONArray("results").getJSONObject(i).get("original_name"), myFormat));
+        for (int i = 0; i < jsonObjectTredingTvShows.getJSONArray("results").length(); i++) {
             
-            String rating = jsonObject.getJSONArray("results").getJSONObject(i).get("vote_average").toString();          
+        	String tvShowName = (String) jsonObjectTredingTvShows.getJSONArray("results").getJSONObject(i).get("original_name");
+            String rating = jsonObjectTredingTvShows.getJSONArray("results").getJSONObject(i).get("vote_average").toString();          
+            String urlPosterImage = imgBaseUrl + jsonObjectTredingTvShows.getJSONArray("results").getJSONObject(i).get("poster_path");
+        	
+            InputStream inputStream = new URL(urlPosterImage).openStream();
+            stickerGenerator.create(inputStream, tvShowName + ".png", rating);
+         
+            System.out.println(colorize(tvShowName, myFormat));
             
             if (Math.round(Double.parseDouble(rating)) == 0) {
             	for (int j = 0; j < 10; j++) {
@@ -120,11 +139,9 @@ public class App {
 			}
                        
             System.out.println("(" + rating + ")");
-            
-            System.out.println(colorize(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"), CYAN_TEXT()));
-            
+            System.out.println(colorize(urlPosterImage, CYAN_TEXT()));
             System.out.println("\n\n");
-        } // fim aula 1 :)
+        } // fim aula 2 :)
 
     }
 }
