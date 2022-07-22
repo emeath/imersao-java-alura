@@ -25,4 +25,5 @@ Aula 1
 - API Doc: https://developers.themoviedb.org/3/getting-started/introduction
 - JColor lib: https://github.com/dialex/JColor
 - Decorar o terminal: https://www.alura.com.br/artigos/decorando-terminal-cores-emojis
+- Ansi Escape in Eclipse Console: https://marketplace.eclipse.org/content/ansi-escape-console
 - *Este README.md foi desenvolvido com o apoio do ótimo artigo: https://www.alura.com.br/artigos/escrever-bom-readme*
