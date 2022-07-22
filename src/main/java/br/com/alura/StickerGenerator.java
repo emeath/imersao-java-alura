@@ -5,7 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -14,7 +18,11 @@ public class StickerGenerator {
 	public void create() throws IOException {
 		
 		// reads image
-		BufferedImage originalImage = ImageIO.read(new File("src/main/resources/input/movie.jpg"));		
+		// get image from disk
+		//InputStream inputStream = new FileInputStream(new File("src/main/resources/input/movie.jpg"));
+		// get image from web datastream
+		InputStream inputStream = new URL("https://image.tmdb.org/t/p/w500/bnfTPTTytrZZ9Aw6hoOQdojiaKo.jpg").openStream();
+		BufferedImage originalImage = ImageIO.read(inputStream);		
 		
 		// create new image in memory with transparency and new size
 		int width = originalImage.getWidth();
