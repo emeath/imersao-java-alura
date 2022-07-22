@@ -20,6 +20,18 @@ Aula 1
 4. Utilizar biblioteca externa para realizar Json Parse - Status: :heavy_check_mark:
 5. Criar mecanismo para usuário realizar a classificação dele para um filme - Status: :construction:
 
+Aula 2
+1. Ler a documentação da classe abstrata InputStream. - Status: :construction:
+1. Centralizar o texto na figurinha. - Status: :construction:
+1. Fazer um pacote no Whatsapp e/ou Telegram com as suas próprias figurinhas! - Status: :construction:
+1. Criar diretório de saída das imagens, se ainda não existir. - Status: :heavy_check_mark:
+1. Colocar outra fonte como a Comic Sans ou a Impact, a fonte usada em memes. - Status: :construction:
+1. Colocar uma imagem de você que está fazendo esse curso sorrindo, fazendo joinha! - Status: :construction:
+1. Colocar contorno (outline) no texto da imagem. - Status: :construction:
+1. Tratar as imagens retornadas pela API do IMDB para pegar uma imagem maior ao invés dos thumbnails. Opções: pegar a URL da imagem e remover o trecho mostrado durante a aula ou consumir o endpoint de posters da API do IMDB (mais trabalhoso), tratando o JSON retornado. - Status: :construction:
+1. Fazer com que o texto da figurinha seja personalizado de acordo com as classificações do IMDB. - Status: :construction:
+1. Desafio supremo: usar alguma biblioteca de manipulação de imagens como OpenCV pra extrair imagem principal e contorná-la. - Status: :construction:
+
 ## :books: Referências
 
 - API Doc: https://developers.themoviedb.org/3/getting-started/introduction
