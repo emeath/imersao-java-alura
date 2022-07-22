@@ -124,7 +124,7 @@ public class App {
             System.out.println(colorize(imgBaseUrl + jsonObject.getJSONArray("results").getJSONObject(i).get("poster_path"), CYAN_TEXT()));
             
             System.out.println("\n\n");
-        }
+        } // fim aula 1 :)
 
     }
 }
