@@ -5,17 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 
 public class StickerGenerator {
 
-	public void create(InputStream inputStream, String stickerFileName, String stickerCaptionName) throws IOException {
+	public void create(InputStream inputStream, String stickerFileName) throws IOException {
 		
 		// reads image
 		// get image from disk
@@ -42,22 +39,12 @@ public class StickerGenerator {
 		graphics.setColor(Color.YELLOW);
 		
 		// write phrase on new image
-		String stickerLegend = stickerCaptionName;
+		String stickerLegend = "TOPZERA D+";
 		int stringWidth = graphics.getFontMetrics().stringWidth(stickerLegend);
 		int centeringPosition = Math.round((width - stringWidth)/2);
 		graphics.drawString(stickerLegend, centeringPosition, newHeight - 100);
 		
-		// Challange: put personal picture based on tv show rating
-		if (Double.parseDouble(stickerCaptionName) >= 7) {
-			InputStream inputStreamThumbsUp = new FileInputStream(new File("src/main/resources/input/thumbsUp.png"));
-			BufferedImage thumbsUpImage = ImageIO.read(inputStreamThumbsUp);
-			graphics.drawImage(thumbsUpImage, 250, newHeight - 250, null);
-		} else if (Double.parseDouble(stickerCaptionName) <= 3.5) { 
-			InputStream inputStreamThumbsDown = new FileInputStream(new File("src/main/resources/input/thumbsDown.png"));
-			BufferedImage thumbsUpImage = ImageIO.read(inputStreamThumbsDown);
-			graphics.drawImage(thumbsUpImage, 250, newHeight - 250, null);
-		}
-		
+	
 		// write new image on file
 		File outputImageFile = new File("src/main/resources/output/" + stickerFileName);
 		// Create output dir if it doesn't exists
